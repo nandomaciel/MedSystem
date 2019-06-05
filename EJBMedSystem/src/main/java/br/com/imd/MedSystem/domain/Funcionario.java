@@ -1,4 +1,4 @@
-package br.com.imd.MedSystem.model;
+package br.com.imd.MedSystem.domain;
 
 public class Funcionario extends Pessoa {
 	

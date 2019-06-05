@@ -3,8 +3,9 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+
 	<display-name>MedSystem - Project JSF</display-name>
-		<servlet>
+		<servlet id="Servlet_1559675496567">
 			<servlet-name>Faces Servlet</servlet-name>
 		 	<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 			<load-on-startup>1</load-on-startup>

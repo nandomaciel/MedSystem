@@ -4,7 +4,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
-import br.com.imd.MedSystem.AutenticacaoRemote;
+import br.com.imd.MedSystem.business.AutenticacaoRemote;
 
 import javax.ejb.EJB;
 

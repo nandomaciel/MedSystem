@@ -1,4 +1,4 @@
-package br.com.imd.MedSystem;
+package br.com.imd.MedSystem.business;
 
 import javax.ejb.Remote;
 
