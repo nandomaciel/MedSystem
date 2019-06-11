@@ -1,16 +1,25 @@
 package br.com.imd.MedSystem.domain;
 
-public class Funcionario extends Pessoa {
+import java.io.Serializable;
+
+public class Funcionario extends Pessoa implements Serializable {
 	
 	private int id;
 	private int ssn;
 	private int nis;
-	private int setor;
+	private String setor;
 	private String sex;
 	private float salario;
+	private String uf;
 	
 	
 	
+	public String getUf() {
+		return uf;
+	}
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
 	public int getId() {
 		return id;
 	}
@@ -29,10 +38,10 @@ public class Funcionario extends Pessoa {
 	public void setNis(int nis) {
 		this.nis = nis;
 	}
-	public int getSetor() {
+	public String getSetor() {
 		return setor;
 	}
-	public void setSetor(int setor) {
+	public void setSetor(String setor) {
 		this.setor = setor;
 	}
 	public String getSex() {

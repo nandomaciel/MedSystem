@@ -1,8 +1,14 @@
 package br.com.imd.MedSystem.domain;
 
-public class Pessoa {
+import java.io.Serializable;
+
+public class Pessoa implements Serializable {
 	
-	private String id_pessoa;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int id_pessoa;
 	private String pNome;
 	private String mNome;
 	private String fNome;
@@ -12,10 +18,10 @@ public class Pessoa {
 	
 	
 	
-	public String getId_pessoa() {
+	public int getId_pessoa() {
 		return id_pessoa;
 	}
-	public void setId_pessoa(String id_pessoa) {
+	public void setId_pessoa(int id_pessoa) {
 		this.id_pessoa = id_pessoa;
 	}
 	public String getpNome() {

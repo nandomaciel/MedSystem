@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+		<h:head>
+		<title>Register Employee</title>
+		
+		<style type="text/css">
+			body {
+				  font-family: Verdana, Arial, Helvetica, sans-serif;
+				  font-size: 14px;
+			}
+			.header {
+				  font-family: Verdana, Arial, Helvetica, sans-serif;
+				  font-size: 18px;
+			}
+			.bottom {
+				  font-family: Verdana, Arial, Helvetica, sans-serif;
+				  font-size: 9px;
+				  text-align: center;
+				  vertical-align: middle;
+				  color: #8E969D;
+			}
+		</style>
+		</h:head>
+
+<body>
+	<b:navBar brand="MedSystem" brandHref="principal.xhtml" inverse="true">
+  	<b:navbarLinks>
+  		<b:navLink value="Listar Funcionarios" href="EmployeeList.xhtml"></b:navLink>
+	    <b:navLink value="Cadastrar Medico" href="RegisterDoctor.xhtml"></b:navLink>
+	    <b:navLink value="Cadastrar Recepcionista" href="RegisterReceptionist.xhtml"></b:navLink>
+	    <b:navLink value="Cadastrar Enfermeiro" href="RegisterNurse.xhtml"></b:navLink>
+  	</b:navbarLinks>
+	</b:navBar>
+	<center>
+	<h2>Doutores</h2>
+		<h:form id="doctorForm">
+        <h:dataTable id="studentTable" value="#{registerEmployeeMB.getDoctorList()}" 
+        var="doctor" class="table table-striped table-hover table-bordered tableUpdated">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{doctor.id_pessoa}"/>
+            </h:column>
+            <h:column>
+            	<f:facet name="header">Primeiro Nome</f:facet>
+              <h:outputText value="#{doctor.pNome}" />
+            </h:column>
+             
+            <h:column>
+                <f:facet name="header">Ultimo Nome</f:facet>
+                <h:outputText value="#{doctor.fNome}" />
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">RG</f:facet>
+                <h:outputText value="#{doctor.rg}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">CPF</f:facet>
+                <h:outputText value="#{doctor.cpf}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Update</f:facet>
+                <h:commandButton action="#{studentBean.editStudentRecord(student.id)}" value="Update" class="btn btn-primary" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:commandButton action="#{studentBean.deleteStudentRecord(student.id)}" value="Delete" class="btn btn-danger" />
+            </h:column>
+            <!-- 
+            <h:column>
+                <f:facet name="header">Password</f:facet>
+                <h:outputText value="#{student.password}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Gender</f:facet>
+                <h:outputText value="#{student.gender}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Address</f:facet>
+                <h:outputText value="#{student.address}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Update</f:facet>
+                <h:commandButton action="#{studentBean.editStudentRecord(student.id)}" value="Update" class="btn btn-primary" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:commandButton action="#{studentBean.deleteStudentRecord(student.id)}" value="Delete" class="btn btn-danger" />
+            </h:column>
+            -->
+        </h:dataTable>
+        
+        <h2>Atendentes</h2>
+        	<h:dataTable id="AtendenteTable" value="#{registerEmployeeMB.getAtendenteList()}" 
+        	var="atendente" class="table table-striped table-hover table-bordered tableUpdated">>
+        		 <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{atendente.id_pessoa}"/>
+            </h:column>
+            <h:column>
+            	<f:facet name="header">Primeiro Nome</f:facet>
+              <h:outputText value="#{atendente.pNome}" />
+            </h:column>
+             
+            <h:column>
+                <f:facet name="header">Ultimo Nome</f:facet>
+                <h:outputText value="#{atendente.fNome}" />
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">RG</f:facet>
+                <h:outputText value="#{atendente.rg}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">CPF</f:facet>
+                <h:outputText value="#{atendente.cpf}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Update</f:facet>
+                <h:commandButton action="#{studentBean.editStudentRecord(student.id)}" value="Update" class="btn btn-primary" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:commandButton action="#{studentBean.deleteStudentRecord(student.id)}" value="Delete" class="btn btn-danger" />
+            </h:column>
+        	
+        	
+        	</h:dataTable>
+        
+        <h2>Enfermeiros</h2>
+        	<h:dataTable id="EnfermeiroTable" value="#{registerEmployeeMB.getEnfermeiroList()}" 
+        	var="Enfemeiros" class="table table-striped table-hover table-bordered tableUpdated">>
+        		
+        	
+        	</h:dataTable>
+        
+            <h:commandButton action="createStudent.xhtml?faces-redirect=true" value="Create New User" class="btn btn-success btnSpace" />
+        
+    </h:form>
+    
+    </center>
+
+</body>
+
+</html>

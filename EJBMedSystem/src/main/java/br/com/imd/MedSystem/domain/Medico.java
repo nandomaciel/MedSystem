@@ -1,12 +1,21 @@
 package br.com.imd.MedSystem.domain;
 
-public class Medico extends Funcionario {
+import java.io.Serializable;
+
+public class Medico extends Funcionario implements Serializable {
 	
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private int id;
+	
 	private String crm;
-	private String uf;
 	private String especialidade;
+	
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -18,12 +27,6 @@ public class Medico extends Funcionario {
 	}
 	public void setCrm(String crm) {
 		this.crm = crm;
-	}
-	public String getUf() {
-		return uf;
-	}
-	public void setUf(String uf) {
-		this.uf = uf;
 	}
 	public String getEspecialidade() {
 		return especialidade;

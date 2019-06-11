@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+		<h:head>
+		<title>Register Employee</title>
+		
+		<style type="text/css">
+			body {
+				  font-family: Verdana, Arial, Helvetica, sans-serif;
+				  font-size: 14px;
+			}
+			.header {
+				  font-family: Verdana, Arial, Helvetica, sans-serif;
+				  font-size: 18px;
+			}
+			.bottom {
+				  font-family: Verdana, Arial, Helvetica, sans-serif;
+				  font-size: 9px;
+				  text-align: center;
+				  vertical-align: middle;
+				  color: #8E969D;
+			}
+		</style>
+		</h:head>
+
+<body>
+	<b:navBar brand="MedSystem" brandHref="principal.xhtml" inverse="true">
+  	<b:navbarLinks>
+  		<b:navLink value="Listar Funcionarios" href="EmployeeList.xhtml"></b:navLink>
+	    <b:navLink value="Cadastrar Medico" href="RegisterDoctor.xhtml"></b:navLink>
+	    <b:navLink value="Cadastrar Recepcionista" href="RegisterReceptionist.xhtml"></b:navLink>
+	    <b:navLink value="Cadastrar Enfermeiro" href="RegisterNurse.xhtml"></b:navLink>
+  	</b:navbarLinks>
+	</b:navBar>
+	<b:container class="painel" layout="fluid">
+	
+	<b:form>
+		<b:row>  
+	    <b:inputText span="2" placeholder="Type you First Name" label="First Name" value="#{registerEmployeeMB.pNome}" />
+	    <b:inputText span="2" placeholder="Type you Middle Name" label="Middle Name" value="#{registerEmployeeMB.mNome}"/>
+	    <b:inputText span="2" placeholder="Type you Last Name" label="Last Name" value="#{registerEmployeeMB.fNome}" />
+		</b:row>
+		
+		<b:row>
+			<b:datepicker span="2" label="Data de Nascimento" />
+	    <b:inputText span="2" placeholder="Type you CPF" label="CPF" value="#{registerEmployeeMB.cpf}"/>
+	    <b:inputText span="2" placeholder="Type you RG" label="RG" value="#{registerEmployeeMB.rg}" />
+		</b:row>
+		
+		<b:row>
+			<b:inputText span="2" placeholder="Type you SSN" label="SSN" value="#{registerEmployeeMB.ssn}"/>
+	    <b:inputText span="2" placeholder="Type you NIS" label="NIS" value="#{registerEmployeeMB.nis}"/>
+	    <b:inputText span="2" placeholder="Type you Setor" label="Setor" value="#{registerEmployeeMB.setor}" />  
+		</b:row>
+		<b:row>
+			<b:inputText span="2" placeholder="Type you sex" label="Sexo" value="#{registerEmployeeMB.sex}"/>
+	    <b:inputText span="2" placeholder="Type you salary" label="Salario" value="#{registerEmployeeMB.salario}"/>
+	    <b:inputText span="1" placeholder="UF" label="UF" value="#{registerEmployeeMB.uf}"/>
+		</b:row>
+		
+		<b:row>
+			<b:inputText span="2" placeholder="Type you CRM" label="CRM" value="#{registerEmployeeMB.crm}"/>
+	    <b:inputText span="2" placeholder="Type you specialty" label="Especialidade" value="#{registerEmployeeMB.especialidade}"/>
+		</b:row>
+		
+		<!-- 
+		<b:row>
+			<b:inputText span="2" placeholder="Type you login" label="Login"/>
+			<b:inputSecret span="2" id="passwordDiv" fieldId="j_password" name="j_password"
+                 value="#{loginBean.password}"
+                 label="Senha"  />
+	    <b:inputSecret span="2" id="passwordDivAgain" fieldId="j_password" name="j_password"
+                 value="#{loginBean.password2}"
+                 label="Senha Novamente"  />
+		</b:row>
+		 -->
+		
+		<b:commandButton value="Cadastrar" action="#{registerEmployeeMB.registerEmployeeType(1)}" update="@form" look="primary" style="width:80px, padding:10px"/>
+		
+	</b:form>
+
+</b:container>
+
+</body>
+
+</html>
