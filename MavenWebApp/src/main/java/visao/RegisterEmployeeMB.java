@@ -1,6 +1,7 @@
 package visao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import br.com.imd.MedSystem.business.CadastrarFuncionarioRemote;
@@ -9,6 +10,7 @@ import br.com.imd.MedSystem.domain.Enfermeiro;
 import br.com.imd.MedSystem.domain.Medico;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -77,8 +79,23 @@ public class RegisterEmployeeMB {
 		return ejb.atendenteList();
 	}
 	
+	public String editDoctorRecord(int id) {
+		
+		Map<String,Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		
+		Medico medicoEdit = ejb.medicoFindById(id);
+		
+		sessionMapObj.put("editDoctorObj", medicoEdit);	
+		
+		return "editDoctorPage";
+	}
 	
-	
+	public String deleteDoctor(int id) {
+		if(ejb.deleteMedico(id)) {
+			return "EmployeeList";
+		}
+		return "";
+	}
 	
 	
 	public String getpNome() {

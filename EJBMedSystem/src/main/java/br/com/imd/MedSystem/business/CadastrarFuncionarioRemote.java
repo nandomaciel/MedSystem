@@ -33,4 +33,12 @@ public interface CadastrarFuncionarioRemote {
 	
 	public ArrayList<Atendente> atendenteList();
 	
+	public Medico medicoFindById(int id);
+	
+	public Enfermeiro enfermeiroFindById(int id);
+	
+	public Atendente atendenteFindById(int id);
+	
+	public boolean deleteMedico(int id);
+	
 }

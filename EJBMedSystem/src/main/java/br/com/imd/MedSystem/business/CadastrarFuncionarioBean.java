@@ -16,8 +16,6 @@ import br.com.imd.MedSystem.domain.Medico;
 public class CadastrarFuncionarioBean implements CadastrarFuncionarioRemote {
 
 	
-	
-	
 	@Override
 	public boolean RegisterDoctor(String pNome, String mNome, String fNome, String dataNascimento, String cpf,
 			String rg, int ssn, int nis, String setor, String sex, float salario, String uf, String crm,
@@ -25,7 +23,7 @@ public class CadastrarFuncionarioBean implements CadastrarFuncionarioRemote {
 		
 		Medico medico = new Medico();
 		
-		
+		medico.setId_pessoa(0 + MedicoDAO.list().size());
 		medico.setpNome(pNome);
 		medico.setmNome(mNome);
 		medico.setfNome(fNome);
@@ -49,7 +47,6 @@ public class CadastrarFuncionarioBean implements CadastrarFuncionarioRemote {
 		System.out.println("Medico cadastrado 2.0 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 		
 		System.out.println(MedicoDAO.list().get(0).getpNome());
-		
 		return true;
 	}
 
@@ -119,6 +116,32 @@ public class CadastrarFuncionarioBean implements CadastrarFuncionarioRemote {
 		return (ArrayList<Atendente>) AtendenteDAO.list();
 	}
 
+	@Override
+	public Medico medicoFindById(int id) {
+		
+		if(MedicoDAO.getById(id) != null) {
+			return MedicoDAO.getById(id);
+		}
+		return null;
+	}
 
+	@Override
+	public Enfermeiro enfermeiroFindById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Atendente atendenteFindById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deleteMedico(int id) {
+		return MedicoDAO.delete(id);
+	}
+
+	
 
 }

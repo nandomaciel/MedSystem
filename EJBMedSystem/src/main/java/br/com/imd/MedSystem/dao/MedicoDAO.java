@@ -35,9 +35,10 @@ public class MedicoDAO {
 		medico.setId(medicos.indexOf(medico) + 1);	
 	}
 	
-	public static void delete(int id) {
+	public static boolean delete(int id) {
 		Medico medico = medicos.get(id - 1);
 		medicos.remove(medico);
+		return true;
 	}
 	
 

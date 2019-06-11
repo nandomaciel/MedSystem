@@ -36,7 +36,7 @@
   	</b:navbarLinks>
 	</b:navBar>
 	<center>
-	<h2>Doutores</h2>
+	<h2>Medicos</h2>
 		<h:form id="doctorForm">
         <h:dataTable id="studentTable" value="#{registerEmployeeMB.getDoctorList()}" 
         var="doctor" class="table table-striped table-hover table-bordered tableUpdated">
@@ -64,34 +64,12 @@
             </h:column>
             <h:column>
                 <f:facet name="header">Update</f:facet>
-                <h:commandButton action="#{studentBean.editStudentRecord(student.id)}" value="Update" class="btn btn-primary" />
+                <h:commandButton action="#{registerEmployeeMB.editDoctorRecord(doctor.id)}" value="Editar" update="@form" class="btn btn-primary" />
             </h:column>
             <h:column>
                 <f:facet name="header">Delete</f:facet>
-                <h:commandButton action="#{studentBean.deleteStudentRecord(student.id)}" value="Delete" class="btn btn-danger" />
+                <h:commandButton action="#{registerEmployeeMB.deleteDoctor(doctor.id)}" value="Deletar" update="@form" class="btn btn-danger" />
             </h:column>
-            <!-- 
-            <h:column>
-                <f:facet name="header">Password</f:facet>
-                <h:outputText value="#{student.password}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">Gender</f:facet>
-                <h:outputText value="#{student.gender}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">Address</f:facet>
-                <h:outputText value="#{student.address}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">Update</f:facet>
-                <h:commandButton action="#{studentBean.editStudentRecord(student.id)}" value="Update" class="btn btn-primary" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">Delete</f:facet>
-                <h:commandButton action="#{studentBean.deleteStudentRecord(student.id)}" value="Delete" class="btn btn-danger" />
-            </h:column>
-            -->
         </h:dataTable>
         
         <h2>Atendentes</h2>
@@ -135,11 +113,7 @@
         	<h:dataTable id="EnfermeiroTable" value="#{registerEmployeeMB.getEnfermeiroList()}" 
         	var="Enfemeiros" class="table table-striped table-hover table-bordered tableUpdated">>
         		
-        	
-        	</h:dataTable>
-        
-            <h:commandButton action="createStudent.xhtml?faces-redirect=true" value="Create New User" class="btn btn-success btnSpace" />
-        
+        	</h:dataTable>        
     </h:form>
     
     </center>
