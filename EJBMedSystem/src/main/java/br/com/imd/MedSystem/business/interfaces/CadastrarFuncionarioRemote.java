@@ -1,4 +1,4 @@
-package br.com.imd.MedSystem.business;
+package br.com.imd.MedSystem.business.interfaces;
 
 import java.util.ArrayList;
 
@@ -14,17 +14,17 @@ public interface CadastrarFuncionarioRemote {
 	public boolean RegisterDoctor(
 			String pNome, String mNome, String fNome, String dataNascimento, String cpf, String rg,
 			int ssn, int nis, String setor, String sex, float salario, String uf,
-			String crm, String especialidade
+			String crm, String especialidade, String login, String senha
 			);
 	public boolean RegisterReceptionist(
 			String pNome, String mNome, String fNome, String dataNascimento, String cpf, String rg,
 			int ssn, int nis, String setor, String sex, float salario, String uf,
-			String setorDeAtendimento
+			String setorDeAtendimento, String login, String senha
 			);
 	public boolean RegisterNurse(
 			String pNome, String mNome, String fNome, String dataNascimento, String cpf, String rg,
 			int ssn, int nis, String setor, String sex, float salario, String uf,
-			String cofen
+			String cofen, String login, String senha
 			);
 	
 	public ArrayList<Medico> doctorList();
@@ -40,5 +40,15 @@ public interface CadastrarFuncionarioRemote {
 	public Atendente atendenteFindById(int id);
 	
 	public boolean deleteMedico(int id);
+	
+	public boolean atualizarMedico(Medico medico);
+	
+	public boolean atualizarAtendente(Atendente atendente);
+	
+	public boolean atualizarEnfermeiro(Enfermeiro enfermeiro);
+	
+	public boolean deleteAtendente(int id);
+	
+	public boolean deleteEnfermeiro(int id);
 	
 }
