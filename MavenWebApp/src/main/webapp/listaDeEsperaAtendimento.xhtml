@@ -1,0 +1,69 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:head> 
+		<title>MedSystem</title>	
+	</h:head>
+	<h:body>
+	
+	<b:navBar brand="MedSystem" brandHref="atendentePrincipal.xhtml" inverse="true">
+  	<b:navbarLinks>
+  		<b:navLink value="Cadastrar Paciente" href="cadastrarPaciente.xhtml"></b:navLink>
+	    <b:navLink value="Listar Pacientes" href="pacientesCadastradosList.xhtml"></b:navLink>
+	  	<b:navLink value="Atendimento" href="listaDeEsperaAtendimento.xhtml"></b:navLink>
+	  	
+	  </b:navbarLinks>
+	</b:navBar>
+	<b:container class="painel" layout="fluid">	
+		<h1>Adicionar Paciente a lista de espera</h1>
+		<b:form>
+			<b:row>
+				<b:inputText span="2" placeholder="Type you Nome" label="Nome" value="#{registrarPacienteMB.pNome}"/>
+				<b:inputText span="2" placeholder="Type you CPF" label="CPF" value="#{registrarPacienteMB.cpf}"/>
+			</b:row>
+			<b:commandButton value="Adicionar" ajax="true" action="#{registrarPacienteMB.addListaDeEspera()}" update="addPacienteTable" look="primary" style="width:80px, padding:10px"/>
+			<h:messages style="color: red" layout="table" styleClass="fonteDeErros" />
+		</b:form>
+		
+		<h1>Lista de espera</h1>
+		<h:dataTable id="addPacienteTable" value="#{registrarPacienteMB.listaDeEspera()}" var="paciente" class="table table-striped table-hover table-bordered tableUpdated">
+			
+			<h:column>
+		    <f:facet name="header">Id</f:facet>
+		    <h:outputText value="#{paciente.id_pessoa}"/>
+	    </h:column>
+	    <h:column>
+		  	<f:facet name="header">Primeiro Nome</f:facet>
+		    <h:outputText value="#{paciente.pNome}" />
+	    </h:column>
+	             
+	    <h:column>
+		    <f:facet name="header">Ultimo Nome</f:facet>
+		    <h:outputText value="#{paciente.fNome}" />
+	    </h:column>
+	            
+	    <h:column>
+		    <f:facet name="header">RG</f:facet>
+		    <h:outputText value="#{paciente.rg}" />
+	    </h:column>
+			<h:column>
+				<f:facet name="header">CPF</f:facet>
+				<h:outputText value="#{paciente.cpf}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">STATUS</f:facet>
+				<h:outputText value="#{paciente.status}" />
+			</h:column>			
+		</h:dataTable>
+		
+		<b:form>
+				<b:commandButton value="Atualizar Lista" ajax="true" action="#{registrarPacienteMB.atualizarPagina()}" update="addPacienteTable" look="primary" style="width:80px, padding:10px"/>
+		</b:form>
+		
+		
+	</b:container>
+	
+	</h:body>
+</html>

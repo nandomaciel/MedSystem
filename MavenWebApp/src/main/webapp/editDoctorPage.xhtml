@@ -35,55 +35,46 @@
 	    <b:navLink value="Cadastrar Enfermeiro" href="RegisterNurse.xhtml"></b:navLink>
   	</b:navbarLinks>
 	</b:navBar>
-	<center>
-	<h2>Medicos</h2>
-		<h:form id="form" class="form-horizontal">
-            <div class="form-group">
-                <div class="col-sm-2"></div>
-                <h2 style="text-align: center" class="col-sm-4">Edit Student Record</h2>
-            </div>
-            <hr/>
-            <div class="form-group">
-                <h:outputLabel for="username" class="control-label col-sm-2">User Name:</h:outputLabel>
-                <div class="col-sm-4">
-                    <h:inputText id="name-id" value="#{editDoctorObj.pNome}" class="form-control"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <h:outputLabel for="email" class="control-label col-sm-2">Email:</h:outputLabel>
-                <div class="col-sm-4">
-                    <h:inputText id="email-id" value="#{editRecordObj.email}" class="form-control"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <h:outputLabel for="password" class="control-label col-sm-2">Password:</h:outputLabel>
-                <div class="col-sm-4">
-                    <h:inputSecret id="password-id" value="#{editRecordObj.password}" class="form-control"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <h:outputLabel for="gender" class="control-label col-sm-2">Gender:</h:outputLabel>
-                <div class="col-sm-4">
-                    <h:selectOneRadio value="#{editRecordObj.gender}">
-                        <f:selectItem itemValue="M" itemLabel="Male" /><f:selectItem itemValue="F" itemLabel="Female" />
-                    </h:selectOneRadio>
-                </div>
-            </div>
-            <div class="form-group">
-                <h:outputLabel for="address" class="control-label col-sm-2">Address:</h:outputLabel>
-                <div class="col-sm-4">
-                    <h:inputTextarea value="#{editRecordObj.address}" cols="50" rows="5" class="form-control"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-4">
-                    <h:commandButton value="Update" action="#{studentBean.updateStudentDetails(editRecordObj)}" class="btn btn-primary updateBtnStyle" />
-                </div>
-            </div>
-        </h:form>
-    </center>
+	
+	
+	<br></br>
+	<b:container class="painel" layout="fluid">
+		<h2 style="align-self: center" >Editar Medico</h2>
 
+	<b:form>
+		<b:row>  
+	    <b:inputText span="2" placeholder="Type you First Name" label="First Name" value="#{editDoctorObj.pNome}" />
+	    <b:inputText span="2" placeholder="Type you Middle Name" label="Middle Name" value="#{editDoctorObj.mNome}"/>
+	    <b:inputText span="2" placeholder="Type you Last Name" label="Last Name" value="#{editDoctorObj.fNome}" />
+		</b:row>
+		
+		<b:row>
+			<b:datepicker span="2" label="Data de Nascimento" value="#{editDoctorObj.dataNascimento}"/>
+	    <b:inputText span="2" placeholder="Type you CPF" label="CPF" value="#{editDoctorObj.cpf}"/>
+	    <b:inputText span="2" placeholder="Type you RG" label="RG" value="#{editDoctorObj.rg}" />
+		</b:row>
+		
+		<b:row>
+			<b:inputText span="2" placeholder="Type you SSN" label="SSN" value="#{editDoctorObj.ssn}"/>
+	    <b:inputText span="2" placeholder="Type you NIS" label="NIS" value="#{editDoctorObj.nis}"/>
+	    <b:inputText span="2" placeholder="Type you Setor" label="Setor" value="#{editDoctorObj.setor}" />  
+		</b:row>
+		<b:row>
+			<b:inputText span="2" placeholder="Type you sex" label="Sexo" value="#{editDoctorObj.sex}"/>
+	    <b:inputText span="2" placeholder="Type you salary" label="Salario" value="#{editDoctorObj.salario}"/>
+	    <b:inputText span="1" placeholder="UF" label="UF" value="#{editDoctorObj.uf}"/>
+		</b:row>
+		
+		<b:row>
+			<b:inputText span="2" placeholder="Type you CRM" label="CRM" value="#{editDoctorObj.crm}"/>
+	    <b:inputText span="2" placeholder="Type you specialty" label="Especialidade" value="#{editDoctorObj.especialidade}"/>
+		</b:row>
+		
+		<b:commandButton value="Atualizar" action="#{registerEmployeeMB.updateDoctor(editDoctorObj)}" update="@form" look="primary" style="width:80px, padding:10px"/>
+		
+	</b:form>
+
+</b:container>
 </body>
 
 </html>

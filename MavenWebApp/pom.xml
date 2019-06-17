@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>br.imd.medSystem</groupId>
-  <artifactId>MavenWebApp</artifactId>
+  <artifactId>MedSystem-WEB</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
@@ -28,7 +28,7 @@
     </dependency>       
       <dependency>
   			<groupId>br.com.imd.MedSystem</groupId>
-  			<artifactId>EJBMedSystem</artifactId>
+  			<artifactId>MedSystem-EJB</artifactId>
   			<version>0.0.1-SNAPSHOT</version>
   			<type>ejb</type>
   		</dependency>

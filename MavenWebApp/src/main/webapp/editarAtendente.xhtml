@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+		<h:head>
+		<title>Register Employee</title>
+		
+		<style type="text/css">
+			body {
+				  font-family: Verdana, Arial, Helvetica, sans-serif;
+				  font-size: 14px;
+			}
+			.header {
+				  font-family: Verdana, Arial, Helvetica, sans-serif;
+				  font-size: 18px;
+			}
+			.bottom {
+				  font-family: Verdana, Arial, Helvetica, sans-serif;
+				  font-size: 9px;
+				  text-align: center;
+				  vertical-align: middle;
+				  color: #8E969D;
+			}
+		</style>
+		</h:head>
+
+<body>
+	<b:navBar brand="MedSystem" brandHref="principal.xhtml" inverse="true">
+  	<b:navbarLinks>
+  		<b:navLink value="Listar Funcionarios" href="EmployeeList.xhtml"></b:navLink>
+	    <b:navLink value="Cadastrar Medico" href="RegisterDoctor.xhtml"></b:navLink>
+	    <b:navLink value="Cadastrar Recepcionista" href="RegisterReceptionist.xhtml"></b:navLink>
+	    <b:navLink value="Cadastrar Enfermeiro" href="RegisterNurse.xhtml"></b:navLink>
+  	</b:navbarLinks>
+	</b:navBar>
+	
+	
+	<br></br>
+	<b:container class="painel" layout="fluid">
+		<h2 style="align-self: center" >Editar Enfermeiro</h2>
+
+	<b:form>
+		<b:row>  
+	    <b:inputText span="2" placeholder="Type you First Name" label="First Name" value="#{editAtendenteObj.pNome}" />
+	    <b:inputText span="2" placeholder="Type you Middle Name" label="Middle Name" value="#{editAtendenteObj.mNome}"/>
+	    <b:inputText span="2" placeholder="Type you Last Name" label="Last Name" value="#{editAtendenteObj.fNome}" />
+		</b:row>
+		
+		<b:row>
+			<b:datepicker span="2" label="Data de Nascimento" value="#{editAtendenteObj.dataNascimento}"/>
+	    <b:inputText span="2" placeholder="Type you CPF" label="CPF" value="#{editAtendenteObj.cpf}"/>
+	    <b:inputText span="2" placeholder="Type you RG" label="RG" value="#{editAtendenteObj.rg}" />
+		</b:row>
+		
+		<b:row>
+			<b:inputText span="2" placeholder="Type you SSN" label="SSN" value="#{editAtendenteObj.ssn}"/>
+	    <b:inputText span="2" placeholder="Type you NIS" label="NIS" value="#{editAtendenteObj.nis}"/>
+	    <b:inputText span="2" placeholder="Type you Setor" label="Setor" value="#{editAtendenteObj.setor}" />  
+		</b:row>
+		<b:row>
+			<b:inputText span="2" placeholder="Type you sex" label="Sexo" value="#{editAtendenteObj.sex}"/>
+	    <b:inputText span="2" placeholder="Type you salary" label="Salario" value="#{editAtendenteObj.salario}"/>
+	    <b:inputText span="1" placeholder="UF" label="UF" value="#{editAtendenteObj.uf}"/>
+		</b:row>
+		
+		<b:row>
+			<b:inputText span="2" placeholder="Type you Setor" label="Setor de Atendimento" value="#{editAtendenteObj.setorDeAtendimento}"/>
+		</b:row>
+			
+		<b:commandButton value="Atualizar" action="#{registerEmployeeMB.updateAtendente(editAtendenteObj)}" update="@form" look="primary" style="width:80px, padding:10px"/>
+		
+	</b:form>
+
+</b:container>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:head> 
+		<title>MedSystem</title>	
+	</h:head>
+	<h:body>
+	
+	<b:navBar brand="MedSystem" brandHref="atendimentoMedicoPage.xhtml" inverse="true">
+	</b:navBar>
+	<b:container class="painel" layout="fluid">	
+		<h1>Lista de atendimento Medico</h1>
+		
+		<h:form id="medicoForm">
+			<h:dataTable id="ConsultaMedicapacienteTable" value="#{consultaMB.pacienteList()}" var="paciente" class="table table-striped table-hover table-bordered tableUpdated">
+				
+				<h:column>
+			    <f:facet name="header">Id</f:facet>
+			    <h:outputText value="#{paciente.id_pessoa}"/>
+		    </h:column>
+		    <h:column>
+			  	<f:facet name="header">Primeiro Nome</f:facet>
+			    <h:outputText value="#{paciente.pNome}" />
+		    </h:column>
+		             
+		    <h:column>
+			    <f:facet name="header">Ultimo Nome</f:facet>
+			    <h:outputText value="#{paciente.fNome}" />
+		    </h:column>
+		            
+		    <h:column>
+			    <f:facet name="header">RG</f:facet>
+			    <h:outputText value="#{paciente.rg}" />
+		    </h:column>
+				<h:column>
+					<f:facet name="header">CPF</f:facet>
+					<h:outputText value="#{paciente.cpf}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">STATUS</f:facet>
+					<h:outputText value="#{paciente.status}" />
+				</h:column>
+				<h:column>
+	       	<f:facet name="header">Iniciar Consulta</f:facet>
+	       	<h:commandButton action="#{consultaMB.iniciarConsultaMedica(paciente.id)}" value="Iniciar" update="@form" class="btn btn-primary" />
+	      </h:column>
+	      
+			</h:dataTable>
+		</h:form>	
+	</b:container>
+	
+	
+	
+	
+	
+	</h:body>
+</html>

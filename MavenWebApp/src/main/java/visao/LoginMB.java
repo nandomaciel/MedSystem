@@ -4,7 +4,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
-import br.com.imd.MedSystem.business.AutenticacaoRemote;
+import br.com.imd.MedSystem.business.interfaces.AutenticacaoRemote;
 
 import javax.ejb.EJB;
 
@@ -18,7 +18,16 @@ public class LoginMB {
 	private AutenticacaoRemote ejb;
 	
 	public String autenticar() {
-		if(ejb.autenticar(login, senha)) {
+		if(ejb.autenticar(login, senha).equals("ATENDENTE")) {
+			return "atendentePrincipal";
+		}
+		if(ejb.autenticar(login, senha).equals("ENFERMEIRO")) {
+			return "atendimentoEnfermeiroPage";
+		}
+		if(ejb.autenticar(login, senha).equals("MEDICO")) {
+			return "atendimentoMedicoPage";
+		}
+		if(ejb.autenticar(login, senha).equals("ADMIN")) {
 			return "principal";
 		}
 		else {

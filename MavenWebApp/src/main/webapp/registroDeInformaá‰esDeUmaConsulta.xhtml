@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+		<h:head>
+		<title>Consulta-MedSystem</title>
+		
+		<style type="text/css">
+			body {
+				  font-family: Verdana, Arial, Helvetica, sans-serif;
+				  font-size: 14px;
+			}
+			.header {
+				  font-family: Verdana, Arial, Helvetica, sans-serif;
+				  font-size: 18px;
+			}
+			.bottom {
+				  font-family: Verdana, Arial, Helvetica, sans-serif;
+				  font-size: 9px;
+				  text-align: center;
+				  vertical-align: middle;
+				  color: #8E969D;
+			}
+		</style>
+		</h:head>
+
+<body>
+	<b:navBar brand="MedSystem" brandHref="principal.xhtml" inverse="true">
+  	<b:navbarLinks>
+	  </b:navbarLinks>
+	</b:navBar>
+	
+	<b:container class="painel" layout="fluid">
+			<h:column>
+			<h2 style="align-self: center" >Informações do Acolhimento</h2>
+			<b:row>  
+		    <b:inputText span="2" placeholder="Temperatura Corporal" readonly="true" label="Temperatura" value="#{PacienteObjEtapaMedico.temperatura}"/>
+		    <b:inputText span="2" placeholder="Pressão cardiaca" readonly="true" label="Pressão" value="#{PacienteObjEtapaMedico.pressao}"/>
+		    <b:inputText span="2" placeholder="Batimentos Cardiacos" readonly="true" label="Batimentos" value="#{PacienteObjEtapaMedico.batimentos}"/> 
+				<b:inputTextarea span="6" label="Alergias" readonly="true" placeholder="Descrever medicamentos que causan alergia "  value="#{PacienteObjEtapaMedico.alergias}"/>
+				
+			</b:row>
+			
+			<b:row>
+				<b:inputTextarea span="6" readonly="true" label="Utiliza algum medicamento ?" placeholder="Descrição de medicamentos que o paciente usa atualmente" value="#{PacienteObjEtapaMedico.medicamentoUtilizados}"/>
+				<b:inputTextarea span="6" readonly="true" label="Doenças Cronicas" placeholder="Descrição das doenças cronicas" value="#{PacienteObjEtapaMedico.doencasCronicas}"/>
+			</b:row>
+		</h:column>
+		
+		<h:column>
+			<h2 style="align-self: center" >Informações sobre a consulta</h2>
+			<b:form>
+				<b:row>  
+			    <b:inputTextarea span="6" label="Estado do Paciente" placeholder="Descrição sobre o estado do paciente" value="#{consultaMB.estadoPaciente}"/>
+					<b:inputTextarea span="6" label="Medicamentos" placeholder="Descrição de medicamentos" value="#{consultaMB.medicamentoReceitados}"/>
+				</b:row>
+
+				<b:row>
+					<b:inputTextarea span="6" label="Descrição de Exames" placeholder="Descrição dos exames a serem realizados" value="#{consultaMB.descExames}"/>
+				</b:row>
+				
+				<h:messages style="color: red" layout="table" styleClass="fonteDeErros" />
+				
+				<b:commandButton value="Registrar Consulta" action="#{consultaMB.registrarConsultaMedica(PacienteObjEtapaMedico)}" update="@form" look="primary" style="width:80px, padding:10px"/>
+			
+			</b:form>
+		</h:column>	
+	
+	</b:container>
+
+</body>
+
+</html>

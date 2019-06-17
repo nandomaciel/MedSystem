@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+		<h:head>
+		<title>Register Employee</title>
+		
+		<style type="text/css">
+        .tableUpdated {
+            width: 90% !important;
+            margin: 17px 58px 0 !important;
+        }
+        .btnSpace {
+            margin: 17px;
+        }     
+    </style>
+		</h:head>
+
+<body>
+	<b:navBar brand="MedSystem" brandHref="atendentePrincipal.xhtml" inverse="true">
+  	<b:navbarLinks>
+  		<b:navLink value="Cadastrar Paciente" href="cadastrarPaciente.xhtml"></b:navLink>
+	    <b:navLink value="Listar Pacientes" href="pacientesCadastradosList.xhtml"></b:navLink>
+	  	<b:navLink value="Atendimento" href="listaDeEsperaAtendimento.xhtml"></b:navLink>
+	  </b:navbarLinks>
+	</b:navBar>
+	<center>
+	
+	<h2>Pacientes</h2>
+		<h:form id="pacienteForms">
+        <h:dataTable id="pacienteTable" value="#{registrarPacienteMB.getpacienteList()}" 
+        var="paciente" class="table table-striped table-hover table-bordered tableUpdated">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{paciente.id_pessoa}"/>
+            </h:column>
+            <h:column>
+            	<f:facet name="header">Primeiro Nome</f:facet>
+              <h:outputText value="#{paciente.pNome}" />
+            </h:column>
+             
+            <h:column>
+                <f:facet name="header">Ultimo Nome</f:facet>
+                <h:outputText value="#{paciente.fNome}" />
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">RG</f:facet>
+                <h:outputText value="#{paciente.rg}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">CPF</f:facet>
+                <h:outputText value="#{paciente.cpf}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Update</f:facet>
+                <h:commandButton action="#{registrarPacienteMB.editPacienteRecord(paciente.id)}" value="Editar" update="@form" class="btn btn-primary" />
+            </h:column>
+            <h:column>
+                <f:facet span="2" name="header">Delete</f:facet>
+                <h:commandButton action="#{registrarPacienteMB.deletePaciente(paciente.id)}" value="Deletar" update="@form" class="btn btn-danger" />
+            </h:column>
+        </h:dataTable>        
+    </h:form>
+    
+    </center>
+
+</body>
+
+</html>

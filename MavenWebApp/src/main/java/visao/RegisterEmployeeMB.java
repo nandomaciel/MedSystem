@@ -4,23 +4,29 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import javax.ejb.EJB;
-import br.com.imd.MedSystem.business.CadastrarFuncionarioRemote;
+
+import br.com.imd.MedSystem.business.interfaces.CadastrarFuncionarioRemote;
 import br.com.imd.MedSystem.domain.Atendente;
 import br.com.imd.MedSystem.domain.Enfermeiro;
 import br.com.imd.MedSystem.domain.Medico;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.NotNull;
 
 @Named(value = "registerEmployeeMB")
 @RequestScoped
 public class RegisterEmployeeMB {
-	
+	 
 	private String pNome;
+	
 	private String mNome;
+ 
 	private String fNome;
+ 
 	private String dataNascimento;
 	private String cpf;
 	private String rg;
@@ -32,6 +38,9 @@ public class RegisterEmployeeMB {
 	private float salario;
 	
 	private String uf;
+	
+	private String login;
+	private String senha;
 	
 	
 	//Caso o Funcionario seja um medico
@@ -50,20 +59,33 @@ public class RegisterEmployeeMB {
 	public String registerEmployeeType(int tipo) {
 		
 		if(tipo== 1) {
-			ejb.RegisterDoctor(pNome, mNome, fNome, dataNascimento, cpf, rg, ssn, nis, setor, sex, salario, uf, crm, especialidade);
-			return "EmployeeList";
+			String result = verificarCamposNulos(tipo);
+			
+			if(result.equals("EmployeeList")) {
+			ejb.RegisterDoctor(pNome, mNome, fNome, dataNascimento, cpf, rg, ssn, nis, setor, sex, salario, uf, crm, especialidade, login, senha);
+			}
+			
+			return result;
 		}
 		
 		if (tipo == 2) {
-			ejb.RegisterNurse(pNome, mNome, fNome, dataNascimento, cpf, rg, ssn, nis, setor, sex, salario, uf, cofen);
+			String result = verificarCamposNulos(tipo);
+			
+			if(result.equals("EmployeeList")) {
+				ejb.RegisterNurse(pNome, mNome, fNome, dataNascimento, cpf, rg, ssn, nis, setor, sex, salario, uf, cofen, login, senha);
+			}
+			return result;
 		}
 		
 		if(tipo == 3 ) {
-			ejb.RegisterReceptionist(pNome, mNome, fNome, dataNascimento, cpf, rg, ssn, nis, setor, sex, salario, uf, setorDeAtendimento );
-		}
-		
-		return null;
-		
+			String result = verificarCamposNulos(tipo);
+			
+			if(result.equals("EmployeeList")) {
+			ejb.RegisterReceptionist(pNome, mNome, fNome, dataNascimento, cpf, rg, ssn, nis, setor, sex, salario, uf, setorDeAtendimento, login, senha );
+			}
+			return result;
+		}	
+		return null;	
 	}
 	
 	
@@ -90,6 +112,48 @@ public class RegisterEmployeeMB {
 		return "editDoctorPage";
 	}
 	
+	public String editEnfermeiroToRecord(int id) {
+		
+		Map<String,Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		
+		Enfermeiro enfermeiroEdit = ejb.enfermeiroFindById(id);
+		
+		sessionMapObj.put("editEnfermeiroObj", enfermeiroEdit);
+		
+		return "editarEnfermeiro";
+	}
+	
+	
+	public String editAtendenteToRecord(int id) {
+		
+		Map<String,Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		
+		Atendente atendenteEdit = ejb.atendenteFindById(id);
+		
+		sessionMapObj.put("editAtendenteObj", atendenteEdit);
+		
+		return "editarAtendente";
+	}
+	
+	
+	
+	public String updateDoctor(Medico editDoctorObj) {
+		
+		ejb.atualizarMedico(editDoctorObj);
+		
+		return "EmployeeList";
+	}
+	
+	public String updateEnfermeiro(Enfermeiro enfermeiro) {
+		ejb.atualizarEnfermeiro(enfermeiro);
+		return "EmployeeList";
+	}
+	
+	public String updateAtendente(Atendente atendente) {
+		ejb.atualizarAtendente(atendente);
+		return "EmployeeList";
+	}
+	
 	public String deleteDoctor(int id) {
 		if(ejb.deleteMedico(id)) {
 			return "EmployeeList";
@@ -97,7 +161,102 @@ public class RegisterEmployeeMB {
 		return "";
 	}
 	
+	public String deleteEnfermeiro(int id) {
+		
+		if(ejb.deleteEnfermeiro(id)) {
+			return "EmployeeList";
+		}
+		return "";
+	}
 	
+	public String deleteAtendente(int id) {
+		
+		if(ejb.deleteAtendente(id)) {
+			return "EmployeeList";
+		}
+		return "";
+	}
+	
+	
+	public String verificarCamposNulos(int tipo) {
+		String resultado = "";
+		
+		boolean falhou = false;
+		if( "".equals(pNome) || "".equals(mNome) || "".equals(fNome) )
+		{	
+			FacesContext.getCurrentInstance().addMessage("invalido",
+					new FacesMessage(" Campo First name, Middle name, Last Name devem ser preechidos"));
+			falhou = true;
+			
+		}
+		if("".equals(dataNascimento) || "".equals(cpf) || "".equals(rg) ) {
+			FacesContext.getCurrentInstance().addMessage("invalido",
+					new FacesMessage(" Campo data de nascimento, cpf e RG devem ser preechidos"));
+					falhou = true;
+		}
+		if("".equals(ssn) || "".equals(nis) || "".equals(setor)) {
+			FacesContext.getCurrentInstance().addMessage("invalido",
+					new FacesMessage(" Campo ssn, nis e setor devem ser preechidos"));
+					falhou = true;
+		}
+		if("".equals(sex) || "".equals(salario) || "".equals(uf)) {
+			FacesContext.getCurrentInstance().addMessage("invalido",
+					new FacesMessage(" Campo Sexo, Salario e UF devem ser preechidos"));
+					falhou = true;
+		}
+		
+		if(tipo == 1) {
+			if("".equals(crm) || "".equals(especialidade)) {
+				FacesContext.getCurrentInstance().addMessage("invalido",
+						new FacesMessage(" Campo CRM, e Especialidade devem ser preechidos"));
+						falhou = true;
+			}
+		}
+		if(tipo == 2 ) {
+			if("".equals(cofen)) {
+				FacesContext.getCurrentInstance().addMessage("invalido",
+						new FacesMessage(" Campo cofen deve ser preechido"));
+						falhou = true;
+			}
+			
+		}
+		
+		if(tipo == 3) {
+			if("".equals(setorDeAtendimento)) {
+				FacesContext.getCurrentInstance().addMessage("invalido",
+						new FacesMessage(" Campo setor de atendimento deve ser preechido"));
+						falhou = true;
+			}
+		}
+		
+		if(!falhou) {
+			resultado = "EmployeeList";
+		}else {
+			resultado =  "falhaNaAutenticacao";
+		}
+		return resultado;
+	}
+	
+	public String getLogin() {
+		return login;
+	}
+
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+
+	public String getSenha() {
+		return senha;
+	}
+
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+
 	public String getpNome() {
 		return pNome;
 	}
