@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.imd.MedSystem.domain.Atendente;
 
+
 public class AtendenteDAO {
 	
 	private static final List<Atendente> atendentes = new ArrayList<Atendente>();
@@ -35,9 +36,10 @@ public class AtendenteDAO {
 		atendente.setId(atendentes.indexOf(atendente) + 1);	
 	}
 	
-	public static void delete(int id) {
+	public static boolean delete(int id) {
 		Atendente atendente = atendentes.get(id - 1);
 		atendentes.remove(atendente);
+		return true;
 	}
 	
 }

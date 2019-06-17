@@ -12,7 +12,6 @@ public class MedicoDAO {
 	public static final Medico getById(int id) {
 		
 		Medico result = null;
-		
 		for(Medico medico : medicos) {
 			if(medico.getId() == id) {
 				result = medico;
@@ -36,10 +35,14 @@ public class MedicoDAO {
 	}
 	
 	public static boolean delete(int id) {
-		Medico medico = medicos.get(id - 1);
-		medicos.remove(medico);
+		for(Medico med : medicos) {
+			System.out.println(med.getId_pessoa() + "id<<<" + id);
+			if ( med.getId_pessoa() == id - 1 ) {
+				System.out.println("chegou no medico dao");
+				medicos.remove(med);
+				break;
+			}
+		}
 		return true;
 	}
-	
-
 }

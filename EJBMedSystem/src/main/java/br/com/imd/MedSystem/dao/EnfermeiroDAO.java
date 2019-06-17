@@ -36,12 +36,11 @@ public class EnfermeiroDAO {
 		enfermeiro.setId(enfermeiros.indexOf(enfermeiro) + 1);	
 	}
 	
-	public static void delete(int id) {
+	public static boolean delete(int id) {
 		Enfermeiro enfermeiro = enfermeiros.get(id - 1);
 		enfermeiros.remove(enfermeiro);
+		return true;
 	}
-	
 
-	
 
 }
