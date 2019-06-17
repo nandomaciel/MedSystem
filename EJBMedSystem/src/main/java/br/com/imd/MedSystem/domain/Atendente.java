@@ -12,8 +12,6 @@ public class Atendente extends Funcionario implements Serializable {
 	private String setorDeAtendimento;
 	
 	
-	
-	
 	public int getIdAtendente() {
 		return idAtendente;
 	}
